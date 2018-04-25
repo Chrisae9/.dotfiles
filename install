@@ -2,23 +2,24 @@
 
 VIM="$HOME/.vimrc"
 VIMDOT="$HOME/.dotfiles/.vimrc"
+VIMBUN="$HOME/.vim/bundles"
 BASH="$HOME/.bashrc"
 BASHDOT="$HOME/.dotfiles/.bashrc"
 
 #sets up vim
-[ -e $VIM ] && rm $VIM && echo "Deleted old .vimrc"
+[ -e "$VIM" ] && rm "$VIM" && echo "Deleted old .vimrc"
 
-ln -s $VIMDOT $VIM
+ln -s "$VIMDOT" "$VIM"
 echo "Created symbolic link for .vimrc"
-mkdir -p $HOME/.vim/bundles
+mkdir -p "$VIMBUN"
 
 vim -E -c PlugInstall -c q -c q
 echo "Installed Plugins for Vim"
 
 #sets up bash
-[ -e $BASH ] && rm $BASH && echo "Deleted old .bashrc"
+[ -e "$BASH" ] && rm "$BASH" && echo "Deleted old .bashrc"
 
-ln -s $BASHDOT $BASH
+ln -s "$BASHDOT" "$BASH"
 echo "Created symbolic link for .bashrc"
 
 echo "DONE!"
