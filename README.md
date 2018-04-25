@@ -10,7 +10,4 @@ How to install my setup for vim and bash
 `cd ~ && git clone https://github.com/Chrisae9/.dotfiles.git`
 
 ### Run install script inside of directory
-`cd .dotfiles/`
-
-`sudo ./install`
-
+`cd .dotfiles/ && ./install`
