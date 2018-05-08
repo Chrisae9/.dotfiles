@@ -5,28 +5,41 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle :compinstall filename '/home/chris/.zshrc'
 
 autoload -Uz compinit
+autoload -U colors && colors
 compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=100000
+HISTSIZE=9999
+SAVEHIST=9999
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
 setopt auto_cd
-cdpath=($HOME)
+cdpath+=($HOME)
+path+=($HOME/bin)
 
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    startx
+fi
 
 # some more aliases
+alias sudo='sudo '
+alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ssu='sudo su'
 
+alias journal='journalctl -p 3 -xb'
+alias sysfail='systemctl --failed'
+alias webkill='sudo ip link set wlp1s0 down'
+
 alias mason='ssh mason'
 alias zeus='ssh zeus'
 
+alias per='chmod +x'
+alias se='sudoedit'
 alias e='nvim'
 alias v='nvim'
 alias vi='nvim'
@@ -40,13 +53,14 @@ alias sshell='source ~/.zshrc'
 alias hshell='v ~/.histfile'
 
 alias gpath='cd /usr/share/gnome-shell/extensions'
+alias scripts='cd /usr/local/bin/'
 alias na='nautilus .'
 alias sna='sudo nautilus .'
-
 alias mountboot='sudo mount /dev/sda2 /mnt/boot'
 
 #Terminal color
-PS1='%F{yellow}|%f%F{red}ᗑ %f%F{yellow}|%f %F{cyan}%~%f %F{yellow}|%f%F{red}ᗑ %f%F{yellow}|%f %F{cyan}»%f %F{yellow}'
+
+PS1="%{$fg[red]%}chris%{$reset_color%}%{$fg[yellow]%}|%{$reset_color%}%{$fg[cyan]%}%~%{$fg[yellow]%}|%{$reset_color%}%{$fg[red]%}$%{$reset_color%} "
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

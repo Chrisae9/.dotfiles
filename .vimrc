@@ -3,7 +3,6 @@ set shiftwidth=4
 set expandtab
 set relativenumber
 set number
-set termguicolors
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -19,18 +18,6 @@ endif
 
 " Start
 call plug#begin('~/.vim/bundles')
-
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
