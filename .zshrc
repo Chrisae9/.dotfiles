@@ -18,6 +18,7 @@ bindkey -v
 setopt auto_cd
 cdpath+=($HOME)
 path+=($HOME/bin)
+path+=("/opt/idea-IU-182.3684.101"/bin)
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
@@ -56,7 +57,6 @@ alias gpath='cd /usr/share/gnome-shell/extensions'
 alias scripts='cd /usr/local/bin/'
 alias na='nautilus .'
 alias sna='sudo nautilus .'
-alias mountboot='sudo mount /dev/sda2 /mnt/boot'
 
 #Terminal color
 

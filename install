@@ -5,6 +5,8 @@ VIMDOT="$HOME/.dotfiles/.vimrc"
 VIMBUN="$HOME/.vim/bundles"
 BASH="$HOME/.bashrc"
 BASHDOT="$HOME/.dotfiles/.bashrc"
+ZSH="$HOME/.zshrc"
+ZSHDOT="$HOME/.dotfiles/.zshrc"
 
 #sets up vim
 [ -L "$VIM" ] && unlink "$VIM" && echo "unlinked old .vimrc"
@@ -27,5 +29,12 @@ echo "Installed Plugins for Vim"
 
 ln -s "$BASHDOT" "$BASH"
 echo "Created symbolic link for .bashrc"
+
+#sets up zsh
+[ -L "$ZSH" ] && unlink "$ZSH" && echo "unlinked old .zshrc"
+[ -e "$ZSH" ] && mv "$ZSH" "$ZSH.bak" && echo "Moved old .bashrc to "$ZSH.bak""
+
+ln -s "$ZSHDOT" "$ZSH"
+echo "Created symbolic link for .zshrc"
 
 echo "DONE!"
