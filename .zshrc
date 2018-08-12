@@ -78,3 +78,5 @@ fi
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+#Launch X apps on Chrome OS
+export DISPLAY=:0
