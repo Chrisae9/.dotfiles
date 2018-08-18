@@ -7,18 +7,28 @@ zstyle :compinstall filename '/home/chris/.zshrc'
 autoload -Uz compinit
 autoload -U colors && colors
 compinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=9999
-SAVEHIST=9999
-bindkey -v
+
+
+# Save command history
+export HISTSIZE=10000  # history size
+export SAVEHIST=10000  # history size after logout
+export HISTFILE=~/.histfile
+setopt INC_APPEND_HISTORY  # Append into history
+setopt HIST_IGNORE_DUPS
+setopt EXTENDED_HISTORY  # Save timestamp for history entries
+
+# Search command history
+bindkey "^R" history-incremental-search-backward
+
+#bindkey -v
 # End of lines configured by zsh-newuser-install
 
 setopt auto_cd
 cdpath+=($HOME)
 path+=($HOME/bin)
-path+=("/opt/idea-IU-182.3684.101"/bin)
+path+=("/opt/idea-IU-idea-IU-182.3911.36"/bin)
+path+=("/opt/android-studio"/bin)
+PKG_CONFIG_PATH=("/usr/lib/pkgconfig")
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
@@ -35,6 +45,7 @@ alias ssu='sudo su'
 alias journal='journalctl -p 3 -xb'
 alias sysfail='systemctl --failed'
 alias webkill='sudo ip link set wlp1s0 down'
+alias javaselect='sudo update-alternatives --config java'
 
 alias mason='ssh mason'
 alias zeus='ssh zeus'
