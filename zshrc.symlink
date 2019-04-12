@@ -1,0 +1,109 @@
+#####################
+# CHRIS' ZSH CONFIG #
+#####################
+
+#COMPINSTALL
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+zstyle :compinstall filename '/home/chris/.zshrc'
+autoload -Uz compinit; autoload -U colors && colors; compinit
+
+#USE .zshrc.local 
+#FOR LOCAL DEVICE SPECIFICS
+if [[ -a ~/.zshrc.local ]]
+then
+    source ~/.zshrc.local
+fi
+
+#PATH
+setopt auto_cd
+cdpath+=($HOME)
+path+=($HOME/bin)
+path+=("/opt/idea-IU-idea-IU-182.3911.36"/bin)
+path+=("/opt/android-studio"/bin)
+PKG_CONFIG_PATH=("/usr/lib/pkgconfig")
+#ENVIRONMENT VARIABLES
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+#BINDS
+set -o emacs
+bindkey -e
+bindkey -s '\es' '^Asudo ^E'    # alt+s to prepend 'sudo ' to current command and move to EOL
+bindkey -s '\ed' '^Upwd^M'      # alt+d to show current working directory
+bindkey -s '\el' '^Uls^M'       # alt+l: execute 'ls'
+bindkey -s '^L' '^Uls -a^M' # alt+L: execute 'ls -a'
+bindkey -s '\eL' '^Uls -laFh^M' # alt+L: execute 'ls -laFh'
+
+#################
+# ALIAS SECTION #
+#################
+
+##SSH
+alias mason='ssh mason'
+alias zeus='ssh zeus'
+alias zeus='ssh smartwater'
+##SHORCUTS
+alias ls='ls --color=auto'
+alias ll='ls -alFh'
+alias la='ls -A'
+alias l='ls -CF'
+#directory operations
+alias dc='cd ..'
+alias pu='pushd'
+alias po='popd'
+#sudo
+alias ssu='sudo su'
+alias se='sudoedit'
+#EDITING
+alias e='nvim'
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+alias vv='v ~/.vimrc'
+alias vshell='v ~/.zshrc'
+alias sshell='source ~/.zshrc'
+alias hshell='v ~/.histfile'
+#MISTAKES
+alias sl=ls
+alias sduo=sudo
+
+#OTHER
+alias journal='journalctl -p 3 -xb'
+alias sysfail='systemctl --failed'
+alias webkill='sudo ip link set wlp1s0 down'
+alias javaselect='sudo update-alternatives --config java'
+
+#TERMINAL COLOR
+PS1="%{$fg[red]%}chris%{$reset_color%}%{$fg[yellow]%}|%{$reset_color%}%{$fg[cyan]%}%~%{$fg[yellow]%}|%{$reset_color%}%{$fg[red]%}$%{$reset_color%} "
+
+#enable color support of ls and also add handy aliases
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+
+#SAVE COMMAND HISTORY
+export HISTSIZE=10000  # history size
+export SAVEHIST=10000  # history size after logout
+export HISTFILE=~/.histfile
+setopt INC_APPEND_HISTORY  # Append into history
+setopt HIST_IGNORE_DUPS
+setopt EXTENDED_HISTORY  # Save timestamp for history entries
+#SEARCH COMMAND HISTORY
+bindkey "^R" history-incremental-search-backward
+
+#STUFF
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    startx
+fi
+#Launch X apps on Chrome OS
+export DISPLAY=:0
