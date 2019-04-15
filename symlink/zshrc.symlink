@@ -8,13 +8,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle :compinstall filename '/home/chris/.zshrc'
 autoload -Uz compinit; autoload -U colors && colors; compinit
 
-#USE .zshrc.local 
-#FOR LOCAL DEVICE SPECIFICS
-if [[ -a ~/.zshrc.local ]]
-then
-    source ~/.zshrc.local
-fi
-
 #PATH
 setopt auto_cd
 cdpath+=($HOME)
@@ -107,3 +100,10 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 fi
 #Launch X apps on Chrome OS
 export DISPLAY=:0
+
+#USE .zshrc.local 
+#FOR LOCAL DEVICE SPECIFICS
+if [[ -f "$HOME"/.zshrc.local ]]
+then
+    source $HOME/.zshrc.local
+fi
