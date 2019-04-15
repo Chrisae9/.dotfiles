@@ -1,0 +1,14 @@
+#Juice
+#A system update script
+
+sudo apt update -y
+sudo apt full-upgrade -y
+sudo apt autoremove -y
+dpkg -s neofetch 2>/dev/null >/dev/null || sudo apt install neofetch -y
+
+clear
+printf "\n\n"
+neofetch
+echo "Updated and Upgraded"
+printf "\n\n"
+

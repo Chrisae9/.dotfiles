@@ -1,15 +1,26 @@
 #!/bin/bash
 
 #GitHub repo filepaths
-ZSHDOT="$HOME/.dotfiles/zshrc.symlink"
-VIMDOT="$HOME/.dotfiles/vimrc.symlink"
-BASHDOT="$HOME/.dotfiles/bashrc.symlink"
+ZSHDOT="$HOME/.dotfiles/symlink/zshrc.symlink"
+VIMDOT="$HOME/.dotfiles/symlink/vimrc.symlink"
+BASHDOT="$HOME/.dotfiles/symlink/bashrc.symlink"
+SCRIPTDOT="$HOME/.dotfiles/scripts"
 
 #Local filepaths
 VIM="$HOME/.vimrc"
 VIMBUN="$HOME/.vim/bundles"
 BASH="$HOME/.bashrc"
 ZSH="$HOME/.zshrc"
+SCRIPT="$HOME/bin"
+
+#sets up scripts
+[ -L "$SCRIPT" ] && unlink "$SCRIPT" && echo "unlinked old bin"
+[ -d "$SCRIPT" ] && [ -z "$SCRIPT" ] && rm -r "$SCRIPT" && echo "removed empty bin dir"
+[ -d "$SCRIPT" ] && [ -n "$SCRIPT" ] && mv "$SCRIPT"  "$SCRIPT.bak" && echo "moved bin dir to backup"
+
+ln -s "$SCRIPTDOT" "$SCRIPT"
+echo "created symbolic link for scripts"
+
 
 #sets up vim
 [ -L "$VIM" ] && unlink "$VIM" && echo "unlinked old .vimrc"
@@ -42,3 +53,4 @@ ln -s "$ZSHDOT" "$ZSH"
 echo "Created symbolic link for .zshrc"
 
 echo "DONE!"
+

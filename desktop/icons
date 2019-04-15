@@ -1,0 +1,4 @@
+#install icon
+sudo cp $HOME/.dotfiles/desktop/*.png -t /usr/share/applications
+
+sudo cp $HOME/.dotfiles/desktop/*.desktop -t /usr/share/applications
