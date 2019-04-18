@@ -1,0 +1,21 @@
+#ssh config
+
+Host mason
+	user calves2
+	hostname mason.gmu.edu
+
+Host zeus
+	user calves2
+	hostname zeus.vse.gmu.edu
+
+Host zeusoff
+	user calves2
+	hostname zeus.vse.gmu.edu
+	Port 22
+	ProxyCommand ssh mason -W %h:%p
+
+Host smartwater
+    user ubuntu
+    hostname ec2-35-173-233-103.compute-1.amazonaws.com
+    IdentityFile ~/.ssh/smartwater.pem 
+

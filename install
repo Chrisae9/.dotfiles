@@ -4,6 +4,7 @@
 ZSHDOT="$HOME/.dotfiles/symlink/zshrc.symlink"
 VIMDOT="$HOME/.dotfiles/symlink/vimrc.symlink"
 BASHDOT="$HOME/.dotfiles/symlink/bashrc.symlink"
+SSHDOT="$HOME/.dotfiles/symlink/ssh_config.symlink"
 SCRIPTDOT="$HOME/.dotfiles/scripts"
 
 #Local filepaths
@@ -12,6 +13,7 @@ VIMBUN="$HOME/.vim/bundles"
 BASH="$HOME/.bashrc"
 ZSH="$HOME/.zshrc"
 SCRIPT="$HOME/bin"
+SSH="$HOME/.ssh/config"
 
 #sets up scripts
 [ -L "$SCRIPT" ] && unlink "$SCRIPT" && echo "unlinked old bin"
@@ -46,11 +48,19 @@ echo "Created symbolic link for .bashrc"
 
 #sets up zsh
 [ -L "$ZSH" ] && unlink "$ZSH" && echo "unlinked old .zshrc"
-[ -e "$ZSH" ] && mv "$ZSH" "$ZSH.bak" && echo "Moved old .bashrc to "$ZSH.bak""
+[ -e "$ZSH" ] && mv "$ZSH" "$ZSH.bak" && echo "Moved old .zshrc to "$ZSH.bak""
 
 ln -s "$ZSHDOT" "$ZSH"
 
 echo "Created symbolic link for .zshrc"
+
+#sets up zsh
+[ -L "$SSH" ] && unlink "$SSH" && echo "unlinked old .config"
+[ -e "$SSH" ] && mv "$SSH" "$SSH.bak" && echo "Moved old .config to "$SSH.bak""
+
+ln -s "$SSHDOT" "$SSH"
+
+echo "Created symbolic link for config"
 
 echo "DONE!"
 

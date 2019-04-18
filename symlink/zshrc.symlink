@@ -57,6 +57,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias ev='v ~/.vimrc'
 alias ez='v ~/.zshrc'
+alias ezl='v ~/.zshrc.local'
 alias sz='source ~/.zshrc'
 alias hz='v ~/.histfile'
 #MISTAKES
@@ -70,7 +71,7 @@ alias webkill='sudo ip link set wlp1s0 down'
 alias javaselect='sudo update-alternatives --config java'
 
 #TERMINAL COLOR
-PS1="%{$fg[red]%}chris%{$reset_color%}%{$fg[yellow]%}|%{$reset_color%}%{$fg[cyan]%}%~%{$fg[yellow]%}|%{$reset_color%}%{$fg[red]%}$%{$reset_color%} "
+PS1="%{$fg[red]%}$USERNAME%{$reset_color%}%{$fg[yellow]%}|%{$reset_color%}%{$fg[cyan]%}%~%{$fg[yellow]%}|%{$reset_color%}%{$fg[red]%}$%{$reset_color%} "
 
 #enable color support of ls and also add handy aliases
 
