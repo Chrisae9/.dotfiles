@@ -1,11 +1,11 @@
 [Desktop Entry]
 # VERSION=@VERSION@
-Name=Gnome
+Name=Smartwater
 Comment=Use the command line
 Keywords=shell;prompt;command;commandline;cmd;
 TryExec=gnome-terminal
-Exec=gnome-terminal --window --maximize 
-Icon=/usr/share/applications/terminalwhite.png
+Exec=gnome-terminal --window --maximize --profile=smartwater
+Icon=/usr/share/applications/terminalssh.png
 Type=Application
 Categories=GNOME;GTK;System;TerminalEmulator;
 StartupNotify=true
