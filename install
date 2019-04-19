@@ -15,6 +15,10 @@ ZSH="$HOME/.zshrc"
 SCRIPT="$HOME/bin"
 SSH="$HOME/.ssh/config"
 
+dpkg -s neovim 2>/dev/null >/dev/null || sudo apt install neovim -y
+dpkg -s zsh 2>/dev/null >/dev/null || sudo apt install zsh -y
+chsh -s $USERNAME
+
 #sets up scripts
 [ -L "$SCRIPT" ] && unlink "$SCRIPT" && echo "unlinked old bin"
 [ -d "$SCRIPT" ] && [ -z "$SCRIPT" ] && rm -r "$SCRIPT" && echo "removed empty bin dir"
@@ -33,7 +37,9 @@ echo "Created symbolic link for .vimrc"
 mkdir -p "$VIMBUN"
 
 mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+[ -L "$XDG_CONFIG_HOME/nvim" ] && unlink "$XDG_CONFIG_HOME/nvim" && echo "unlinked old nvim"
 ln -s ~/.vim $XDG_CONFIG_HOME/nvim
+[ -L "$XDG_CONFIG_HOME/nvim/init.vim" ] && "unlink $XDG_CONFIG_HOME/nvim/init.vim" && echo "unlinked old nvim init"
 ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
 vim -E -c PlugInstall -c q -c q

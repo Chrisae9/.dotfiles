@@ -1,0 +1,59 @@
+#!/bin/bash
+
+#Setup
+#A system first time setup script
+
+sudo apt update -y
+sudo apt full-upgrade -y
+sudo apt autoremove -y
+
+PACKAGES="$HOME/.dotfiles/scripts/packages"
+programs="$PACKAGES/programs.txt"
+dependencies="$PACKAGES/dependencies.txt"
+
+get=()
+
+while read line
+do
+    pkg=${line}
+    
+    #testing if package is installed (exit status 1 means false)
+    dpkg -s "$pkg" 2>/dev/null >/dev/null 
+    status=$?
+
+    printf "\n"$pkg""
+    if test $status -eq 0
+    then
+        printf ": installed"
+    else
+        printf ": not installed"
+        get+=("$pkg")
+    fi
+done < $programs
+
+#how to print an array in bash
+#printf "%s\n" "${get[@]}"
+printf "\n"
+
+for i in "${get[@]}"
+do
+    pkg=$i
+    if grep -x --quiet $pkg $dependencies
+    then
+        printf "\ninstalling dependencies for $pkg\n"
+        $PACKAGES/dep_$pkg
+    else
+        printf "\ninstalling $pkg\n"
+        sudo apt install $pkg -y
+        
+    fi
+done
+
+"$HOME/.dotfiles/install"
+
+clear
+printf "\n\n"
+neofetch
+echo "system setup, please restart terminal"
+printf "\n\n"
+

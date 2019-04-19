@@ -1,0 +1,11 @@
+ssh
+git
+neovim
+zsh
+neofetch
+python
+python2.7
+python3
+pip
+gnome-terminal
+test

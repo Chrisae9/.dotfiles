@@ -16,6 +16,6 @@ Host zeusoff
 
 Host smartwater
     user ubuntu
-    hostname ec2-35-173-233-103.compute-1.amazonaws.com
+    hostname ec2-3-214-69-60.compute-1.amazonaws.com
     IdentityFile ~/.ssh/smartwater.pem 
 
