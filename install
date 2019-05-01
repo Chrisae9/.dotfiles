@@ -1,11 +1,17 @@
 #!/bin/bash
 
+if [[ $EUID -eq 0 ]]; then
+    echo "Please don't run as root"
+    exit 1
+fi
+
 #GitHub repo filepaths
 ZSHDOT="$HOME/.dotfiles/symlink/zshrc.symlink"
 VIMDOT="$HOME/.dotfiles/symlink/vimrc.symlink"
 BASHDOT="$HOME/.dotfiles/symlink/bashrc.symlink"
 SSHDOT="$HOME/.dotfiles/symlink/ssh_config.symlink"
 SCRIPTDOT="$HOME/.dotfiles/scripts"
+FONTDOT="$HOME/.dotfiles/fonts"
 
 #Local filepaths
 VIM="$HOME/.vimrc"
@@ -13,11 +19,21 @@ VIMBUN="$HOME/.vim/bundles"
 BASH="$HOME/.bashrc"
 ZSH="$HOME/.zshrc"
 SCRIPT="$HOME/bin"
+FONT="$HOME/.local/share/fonts"
 SSH="$HOME/.ssh/config"
 
 dpkg -s neovim 2>/dev/null >/dev/null || sudo apt install neovim -y
 dpkg -s zsh 2>/dev/null >/dev/null || sudo apt install zsh -y
-chsh -s $USERNAME
+echo "Enter password to change shell to zsh"
+chsh -s /bin/zsh
+
+#sets up fonts
+[ -L "$FONT" ] && unlink "$FONT" && echo "unlinked old font"
+[ -d "$FONT" ] && [ -z "$FONT" ] && rm -r "$FONT" && echo "removed empty font dir"
+[ -d "$FONT" ] && [ -n "$FONT" ] && mv "$FONT"  "$FONT.bak" && echo "moved font dir to backup"
+
+ln -s "$FONTDOT" "$FONT"
+echo "created symbolic link for scripts"
 
 #sets up scripts
 [ -L "$SCRIPT" ] && unlink "$SCRIPT" && echo "unlinked old bin"

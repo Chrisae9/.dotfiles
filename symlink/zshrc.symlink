@@ -23,7 +23,6 @@ set -o emacs
 bindkey -e
 bindkey "^R" history-incremental-search-backward #ctrl+r search through zsh history
 bindkey -s '\es' '^Asudo ^E'    # alt+s to prepend 'sudo ' to current command and move to EOL
-bindkey -s '\ec' '^Ucd ^E'    # alt+c to  'cd ' to current command and move to EOL
 bindkey -s '\ed' '^Upwd^M'      # alt+d to show current working directory
 bindkey -s '\el' '^Uls^M'       # alt+l: execute 'ls'
 bindkey -s '^L' '^Uls -a^M' # alt+L: execute 'ls -a'
@@ -42,6 +41,7 @@ alias ls='ls --color=auto'
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
+alias q='exit'
 #directory operations
 alias dc='cd ..'
 alias pu='pushd'
