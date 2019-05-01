@@ -1,5 +1,7 @@
 # .dotfiles
-How to install my setup for vim and bash
+How to install my setup for my unix system.
+
+**Includes**: git, zsh, nvim, ssh, fonts, scripts, VS Code, etc.
 
 # Setup
 
@@ -11,3 +13,24 @@ How to install my setup for vim and bash
 
 ### Run install script inside of directory
 `cd .dotfiles/ && ./install`
+
+# Tips
+```
+ssh-keygen -t rsa
+git config --global user.name "githubid"
+git config --global user.email "something"@gmail.com
+
+vim ~/.ssh/config
+
+~~~~~~~~~~~~~~~~~~~~
+Host "shortcut"
+    User "username"
+    Hostname "address" 
+    Port "number"
+    IdentityFile "~/.ssh/file"
+~~~~~~~~~~~~~~~~~~~~
+
+ssh-copy-id "shortcut"
+
+scp "shortcut":[filepath] [location to place file]
+```
