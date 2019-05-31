@@ -61,7 +61,7 @@ alias ezl='v ~/.zshrc.local'
 alias sz='source ~/.zshrc'
 alias hz='v ~/.histfile'
 #MISTAKES
-alias sl=ls
+#alias sl=ls
 alias sduo=sudo
 
 #OTHER

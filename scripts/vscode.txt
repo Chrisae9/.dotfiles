@@ -1,0 +1,7 @@
+PLUGINS LIST
+
+vim
+mark down all in one
+markdown lint
+
+
