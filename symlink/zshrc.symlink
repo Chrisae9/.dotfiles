@@ -24,9 +24,8 @@ bindkey -e
 bindkey "^R" history-incremental-search-backward #ctrl+r search through zsh history
 bindkey -s '\es' '^Asudo ^E'    # alt+s to prepend 'sudo ' to current command and move to EOL
 bindkey -s '\ed' '^Upwd^M'      # alt+d to show current working directory
-bindkey -s '\el' '^Uls^M'       # alt+l: execute 'ls'
-bindkey -s '^L' '^Uls -a^M' # alt+L: execute 'ls -a'
-bindkey -s '\eL' '^Uls -laFh^M' # alt+L: execute 'ls -laFh'
+bindkey -s '\el' '^Uls -a^M'       # alt+l: execute 'ls -a'
+bindkey -s '^L' '^Uls -alFh^M' # alt+L: execute 'ls -alFh'
 
 #################
 # ALIAS SECTION #
